@@ -16,9 +16,11 @@ class App extends React.Component {
   }
   
   removeTask(id) {
+    
     this.setState({
       tasks: this.state.tasks.filter((task) => task.id !== id),
     });
+    this.socket.emit('removeTask', id);
   }
 
   addTask(task) {
@@ -40,6 +42,10 @@ class App extends React.Component {
     this.setState({
       tasks:  [ ...tasks],
     });
+  }
+
+  emitRemoveTask(task) {
+    this.socket.emit('removeTask', task);
   }
  
   render() {
