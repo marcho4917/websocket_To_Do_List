@@ -1,6 +1,7 @@
 const express = require('express');
 const socket = require('socket.io');
 const path = require('path');
+const { uuid } = require('uuidv4');
 const app = express();
 
 let tasks = [];
@@ -14,7 +15,7 @@ const io = socket(server);
 io.on('connection', (socket) => {
   io.emit('updateData', tasks);
     socket.on('addTask', (task) => {
-        const newTask = ({id: tasks.length + 1, name: task});
+        const newTask = ({id: uuid(), name: task});
         tasks.push(newTask);
         io.emit('addTask', newTask);
     });

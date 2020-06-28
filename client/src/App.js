@@ -22,7 +22,7 @@ class App extends React.Component {
   }
 
   addTask(task) {
-    this.setState({tasks: [...this.state.tasks, task]})
+    this.setState({tasks: [...this.state.tasks, task]});
   }
 
   
@@ -32,7 +32,6 @@ class App extends React.Component {
 
   submitForm = (event) => {
     event.preventDefault();
-    this.addTask(this.state.taskName);
     this.socket.emit('addTask', this.state.taskName);
   }
 
