@@ -13,7 +13,7 @@ const server = app.listen(process.env.PORT || 8000, () => {
 const io = socket(server);
 
 io.on('connection', (socket) => {
-  io.emit('updateData', tasks);
+  socket.emit('updateData', tasks);
     socket.on('addTask', (task) => {
         const newTask = ({id: uuid(), name: task});
         tasks.push(newTask);
