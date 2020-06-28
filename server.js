@@ -3,7 +3,7 @@ const socket = require('socket.io');
 const path = require('path');
 const app = express();
 
-const tasks = [];
+let tasks = [];
 
 const server = app.listen(process.env.PORT || 8000, () => {
   console.log('Server is running on port: 8000');
@@ -19,7 +19,7 @@ io.on('connection', (socket) => {
         io.emit('addTask', newTask);
     });
    socket.on('removeTask', (taskToRemove) => {
-      tasks.filter((task) => task.id !== taskToRemove.id);
+      tasks = tasks.filter((task) => task.id !== taskToRemove);
      io.emit('removeTask', taskToRemove);
     });
 });

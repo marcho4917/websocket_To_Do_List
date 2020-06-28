@@ -16,11 +16,9 @@ class App extends React.Component {
   }
   
   removeTask(id) {
-    
     this.setState({
       tasks: this.state.tasks.filter((task) => task.id !== id),
     });
-    this.socket.emit('removeTask', id);
   }
 
   addTask(task) {
@@ -44,8 +42,8 @@ class App extends React.Component {
     });
   }
 
-  emitRemoveTask(task) {
-    this.socket.emit('removeTask', task);
+  sendRemoveTaskToServer(id) {
+    this.socket.emit('removeTask', id);
   }
  
   render() {
@@ -62,7 +60,7 @@ class App extends React.Component {
     
           <ul className="tasks-section__list" id="tasks-list">
             {tasks.map(task => (
-              <li key={task.id} className="task">{task.name}<button className="btn btn--red" onClick={(e) => this.removeTask(task.id)}>Remove</button></li>
+              <li key={task.id} className="task">{task.name}<button className="btn btn--red" onClick={() => this.sendRemoveTaskToServer(task.id)}>Remove</button></li>
             ))}
           </ul>
     
