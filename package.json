@@ -1,4 +1,5 @@
 {
+  "homepage": "https://marcho4917.github.io/websocket_To_Do_List/",
   "dependencies": {
     "express": "4.17.1",
     "gh-pages": "^3.1.0",
@@ -7,7 +8,9 @@
     "uuid": "^8.2.0",
     "uuidv4": "^6.1.1"
   },
-  "script": {
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "nodemon server.js"
   }
 }
